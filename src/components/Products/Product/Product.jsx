@@ -9,11 +9,11 @@ const Product = ({ product }) => {
 
     console.log(product);
 
-    return <div>test</div> 
+    // return <div>test</div> 
 
     return (
         <Card className={classes.root}>
-               <CardMedia className={classes.media} image={product.image} title={product.name} />
+               <CardMedia className={classes.media} image={product.media.source} title={product.name} />
                <CardContent>
                     <div className={classes.cardContent}>
                         <Typography variant="h5" gutterBottom>
@@ -21,13 +21,13 @@ const Product = ({ product }) => {
                         </Typography>
 
                     </div>
-                    <Typography variant="body2" color="TextSecondary"> {product.description}
+                    <Typography dangerouslySetInnerHTML  = {{ __html: product.description }} variant="body2" color="textSecondary">
                     </Typography>
     
                </CardContent>
             
-               <CardActions disableSpacing className={classes.cardActions}>
-                    <Typography variant="body2" color="TextSecondary"> {product.price}</Typography>
+               <CardActions disableSpacing className={classes.CardActions}>
+                    <Typography variant="body2" color="textSecondary"> {product.price.formatted_with_symbol}</Typography>
                     <IconButton aria-label="Add to Cart">
                         <AddShoppingCart />
                     </IconButton>

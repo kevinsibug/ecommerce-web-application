@@ -10,15 +10,13 @@ const Products = ({ products }) => {
     return (
         <main className={classes.content}>
             <div className={classes.toolbar} />
-            <Grid contanier justify="center" spacing={4}>
+            <Grid container justify="center" spacing={4}>
                 {products.map((product) => (
                     <Grid item key={product.id} xs={12} sm={6} m={4} lg={3}>
                         <Product product={product} />
                     </Grid>
                 ))}
-
             </Grid>
-        
         </main> 
 
     );
