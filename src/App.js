@@ -17,9 +17,21 @@ const App = () => {
     }
 
     const handleAddToCart = async (productId, quantity) => {
-        const item = await commerce.cart.add(productId, quantity);
+        
+        var inCart = false;
+        
+        for (var i=0; i < cart.line_items.length; i++ ){
+            if (cart.line_items[i].product_id==(productId)) {
+                console.log("Product already in cart.");
+                inCart = true;
+                break;
+            }
+        }
 
-        setCart(item.cart);
+        if (inCart == false) {
+            const item = await commerce.cart.add(productId, quantity);
+            setCart(item.cart);
+        }
     }
 
     useEffect(() => {
