@@ -31,7 +31,7 @@ const App = () => {
 
     return (
         <div>
-            <Menubar totalItems={cart.total_items} />
+            <Menubar totalItems={cart.total_unique_items} />
             E-commerce Web Application
             <Products products={ products } onAddToCart={handleAddToCart} />
         </div>
