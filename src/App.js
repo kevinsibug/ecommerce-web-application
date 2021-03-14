@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import { Products, Menubar } from './components';
+import { Products, Menubar} from './components';
+import SnackbarSimple  from './components/Utilities/SnackbarSimple';
 import { commerce } from './lib/commerce';
 
 const App = () => {
+    const [open, setOpen] = useState(false);
+
     const [products, setProducts] = useState([]);
     const [cart, setCart] = useState({});
 
@@ -21,14 +24,15 @@ const App = () => {
         var inCart = false;
         
         for (var i=0; i < cart.line_items.length; i++ ){
-            if (cart.line_items[i].product_id==(productId)) {
-                console.log("Product already in cart.");
+            if (cart.line_items[i].product_id===(productId)) {
+                window.alert("Product already in cart.");
                 inCart = true;
+                // setOpen(true);
                 break;
             }
         }
 
-        if (inCart == false) {
+        if (inCart === false) {
             const item = await commerce.cart.add(productId, quantity);
             setCart(item.cart);
         }
@@ -44,8 +48,8 @@ const App = () => {
     return (
         <div>
             <Menubar totalItems={cart.total_unique_items} />
-            E-commerce Web Application
             <Products products={ products } onAddToCart={handleAddToCart} />
+            {/* <SnackbarSimple open = {open} /> */}
         </div>
     )
 }
