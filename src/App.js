@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import { Products, Menubar} from './components';
+import { Products, Menubar, Cart } from './components';
 import SnackbarSimple  from './components/Utilities/SnackbarSimple';
 import { commerce } from './lib/commerce';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 const App = () => {
     const [open, setOpen] = useState(false);
@@ -37,6 +38,20 @@ const App = () => {
             setCart(item.cart);
         }
     }
+    
+    const handleRemoveFromCart = async (productId) => {
+        const { cart } = await commerce.cart.remove(productId);
+
+        setCart(cart)
+    }
+
+    const handleEmptyCart = async () => {
+
+        const {cart} = await commerce.cart.empty();
+
+        setCart(cart);
+
+    }
 
     useEffect(() => {
         fetchProducts();
@@ -46,11 +61,25 @@ const App = () => {
     console.log(cart);
 
     return (
-        <div>
-            <Menubar totalItems={cart.total_unique_items} />
-            <Products products={ products } onAddToCart={handleAddToCart} />
-            {/* <SnackbarSimple open = {open} /> */}
-        </div>
+        <Router> 
+
+            <div>
+                <Menubar totalItems={cart.total_unique_items} />}
+                <Switch> 
+                    <Route exact path="/">
+                        <Products products={ products } onAddToCart={handleAddToCart} />
+                        {/* <SnackbarSimple open = {open} /> */}
+
+                    </Route>
+                    <Route exact path="/cart">
+                        <Cart cart={cart} 
+                        handleRemoveFromCart = {handleRemoveFromCart}
+                        handleEmptyCart = {handleEmptyCart}
+                        />
+                    </Route>
+                </Switch>
+            </div>
+        </Router>
     )
 }
 
