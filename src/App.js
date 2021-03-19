@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Products, Menubar, Cart, Checkout } from './components';
+import { Products, Menubar, Cart, Checkout, Album } from './components';
 import SnackbarSimple  from './components/Utilities/SnackbarSimple';
 import { commerce } from './lib/commerce';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
@@ -83,7 +83,8 @@ const App = () => {
         <Router> 
 
             <div>
-               <Menubar totalItems={cart.total_unique_items} />}
+               <Menubar totalItems={cart.total_unique_items} />
+               <Album />
                 <Switch> 
                     <Route exact path="/">
                         <Products products={ products } onAddToCart={handleAddToCart} />

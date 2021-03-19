@@ -13,10 +13,11 @@ const Menubar = ( { totalItems } ) => {
         <div>
             <AppBar position="fixed" className={classes.appBar} color="inherit">
                 <Toolbar>
-                    <Typography component={Link} to="/">
+                    <Link style = {{textDecoration: 'none', fontWeight: 'bold', color: '#3C64B1'}}to = "/">Digital Artworks Online Store</Link>
+                    {/* <Typography component={Link} to="/">
                         <img src='' alt="" height="30px" className={classes.image} /> 
                         Digital Artworks Online Store
-                    </Typography>
+                    </Typography> */}
                     <div className={classes.grow} />
                     {location.pathname === '/' && ( 
                     <div className={classes.button}>
