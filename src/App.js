@@ -84,9 +84,9 @@ const App = () => {
 
             <div>
                <Menubar totalItems={cart.total_unique_items} />
-               <Album />
                 <Switch> 
                     <Route exact path="/">
+                    <Album />
                         <Products products={ products } onAddToCart={handleAddToCart} />
                         {/* <SnackbarSimple open = {open} /> */}
 
