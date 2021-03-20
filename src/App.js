@@ -1,8 +1,17 @@
 import React, { useState, useEffect } from "react";
-import { Products, Menubar, Cart, Checkout, Album } from "./components";
+import {
+  Products,
+  Menubar,
+  Cart,
+  Checkout,
+  Album,
+  SimpleModal,
+} from "./components";
 import SnackbarSimple from "./components/Utilities/SnackbarSimple";
 import { commerce } from "./lib/commerce";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
+import Modal from "@material-ui/core/Modal";
 
 const App = () => {
   const [open, setOpen] = useState(false);
@@ -11,6 +20,8 @@ const App = () => {
   const [cart, setCart] = useState({});
   const [order, setOrder] = useState({});
   const [errorMessage, setErrorMessage] = useState("");
+
+  const [modalImage, setModalImage] = useState("");
 
   const fetchProducts = async () => {
     const { data } = await commerce.products.list();
@@ -79,6 +90,14 @@ const App = () => {
 
   console.log(cart);
 
+  const handleOpen = (image) => {
+    setModalImage(image);
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
     <Router>
       <div>
@@ -86,11 +105,25 @@ const App = () => {
         <Switch>
           <Route exact path="/">
             <Album />
-            <Products products={products} onAddToCart={handleAddToCart} />
+            <Products
+              handleOpen={handleOpen}
+              products={products}
+              onAddToCart={handleAddToCart}
+            />
+            <Modal
+              open={open}
+              onClose={handleClose}
+              aria-labelledby="simple-modal-title"
+              aria-describedby="simple-modal-description"
+            >
+              <div>
+                <SimpleModal image={modalImage} />
+              </div>
+            </Modal>
             {/* <SnackbarSimple open = {open} /> */}
           </Route>
           <Route exact path="/cart">
-            <div style = {{minHeight: '100vh', backgroundColor: '#F3F6FA'}}>
+            <div style={{ minHeight: "100vh", backgroundColor: "#F3F6FA" }}>
               <Cart
                 cart={cart}
                 handleRemoveFromCart={handleRemoveFromCart}

@@ -4,20 +4,21 @@ import { AddShoppingCart } from '@material-ui/icons';
 
 import useStyles from './styles';
 
-const Product = ({ product, onAddToCart }) => {
+const Product = ({ handleOpen, product, onAddToCart }) => {
     const classes = useStyles();
 
     console.log(product);
 
 
-    const handleClick = (e) => {
+    const handleClick = (e, image) => {
         e.preventDefault();
         console.log(e)
+        handleOpen(image);
     }
 
     return (
         <Card className={classes.root}>
-            <CardMedia onClick = {(e) => handleClick(e)} className={classes.media} image={product.media.source} title={product.name} />
+            <CardMedia onClick = {(e) => handleClick(e, product.media.source)} className={classes.media} image={product.media.source} title={product.name} style = {{cursor: 'pointer'}} />
             <CardContent>
                 <div className={classes.cardContent}>
                     <Typography variant="h5" gutterBottom>
