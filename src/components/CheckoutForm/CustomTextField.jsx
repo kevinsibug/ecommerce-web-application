@@ -7,8 +7,8 @@ const FormInput = ({ name, label, required }) => {
     const { control } = useFormContext();
 
     return (
-        <Grid item xs={12} sm={6}> 
-            <Controller 
+        <Grid item xs={12} sm={6}>
+            <Controller
                 as={TextField}
                 defaultValue=""
                 control={control}
@@ -16,6 +16,11 @@ const FormInput = ({ name, label, required }) => {
                 name={name}
                 label={label}
                 required={required}
+                // ref={
+                //     register({
+                //       pattern: /[A-Za-z]{3}/
+                //     })
+                //   }
             />
         </Grid>
     )

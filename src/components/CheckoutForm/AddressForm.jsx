@@ -10,13 +10,14 @@ import { commerce } from '../../lib/commerce';
 const AddressForm = ( {checkoutToken, next }) => {
 
     const methods = useForm();
+    console.log(methods)
  
 
     return (
         <>
             <Typography variant="h6" gutterBottom> Customer and Shipping Details </Typography>
             <FormProvider {...methods} >
-                <form onSubmit={methods.handleSubmit((data) => next({ ...data }) )}>
+                <form onSubmit={methods.handleSubmit((data) => {console.log(data);next({ ...data })} )}>
                     <Grid container spacing={3}>
                         <FormInput required name='firstName' label='First Name' />
                         <FormInput required name='lastName' label='Last Name' />
