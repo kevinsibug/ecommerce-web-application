@@ -20,6 +20,9 @@ const FormInput = ({ register, name, label, required }) => {
                         name={name}
                         label={label}
                         required={required}
+                        inputRef={register({
+                            required: 'You must provide the email address!',
+                        })}
                     />
                 )}
 

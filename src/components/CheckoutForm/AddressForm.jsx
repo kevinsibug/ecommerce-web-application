@@ -18,7 +18,7 @@ const AddressForm = ({ checkoutToken, next }) => {
         <>
             <Typography variant="h6" gutterBottom> Customer and Shipping Details </Typography>
             <FormProvider {...methods} >
-                <form onSubmit={methods.handleSubmit((data) => {console.log(data);next({ ...data })} , (error) => {window.alert("Please enter a valid email address")} )}>
+                <form onSubmit={methods.handleSubmit((data) => {console.log(data); next({ ...data })} , (error) => {window.alert("Please enter a valid email address")} )}>
                     <Grid container spacing={3}>
                         <FormInput register = {methods.register} required name='firstName' label='First Name' />
                         <FormInput register = {methods.register} required name='lastName' label='Last Name' />
